@@ -16,13 +16,19 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // Allow your React Client
+    origin: ["http://localhost:5173", "https://heavenly-pos-1.vercel.app"],
     methods: ["GET", "POST"]
+    
   }
 });
 
 // 4. Store 'io' so we can use it in routes
 app.set('socketio', io);
+
+// CORS Configuration
+app.use(cors({
+  origin: ["http://localhost:5173", "https://heavenly-pos-1.vercel.app"],
+}));
 
 // 5. Basic Socket Connection Log
 io.on('connection', (socket) => {
