@@ -21,21 +21,22 @@ const Dashboard = () => {
       console.error("Error fetching stats:", err);
     }
   };
-
-  useEffect(() => {
-    // 1. Initial Fetch (Get data when page loads)
+useEffect(() => {
     fetchStats();
 
-    // 2. Connect to WebSocket
-    const socket = io("http://localhost:5000");
+    // CONNECT TO PRODUCTION URL OR LOCALHOST
+    // We strip the '/api' from the base URL to get the root server URL
+    const baseUrl = import.meta.env.VITE_API_URL 
+      ? import.meta.env.VITE_API_URL.replace('/api', '') 
+      : "http://localhost:5000";
+      
+    const socket = io(baseUrl);
 
-    // 3. Listen for "sale-update" event
     socket.on("sale-update", () => {
       console.log("⚡ Real-time update received!");
-      fetchStats(); // Re-fetch data automatically
+      fetchStats();
     });
 
-    // 4. Cleanup on unmount (Disconnect when leaving page)
     return () => socket.disconnect();
   }, []);
 

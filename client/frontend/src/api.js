@@ -1,14 +1,15 @@
 import axios from 'axios';
 
+// Use the environment variable if it exists, otherwise default to localhost
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: BASE_URL,
 });
 
-// INTERCEPTOR: Automatically adds the Token to every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
-    // We send it as "Bearer <token>"
     config.headers.token = `Bearer ${token}`;
   }
   return config;
