@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @layer utilities {
-  .animate-border-spin {
-    animation: border-spin 3s linear infinite;
+  /* Rename this to match the code in Login.jsx */
+  .animate-spin-slow {
+    animation: border-spin 4s linear infinite;
   }
 }
 
