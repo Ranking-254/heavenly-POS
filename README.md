@@ -145,7 +145,7 @@ heavenly-pos-system/
 ```
 
 # Here is a live website url fell free to check it out 👇👇
-[Live Website](https://ticket-generator-five-sigma.vercel.app)
+[Live Website](https://heavenly-pos-lob6.vercel.app)
 
 
 ## Contributing
